@@ -54,7 +54,7 @@
   }
 }
 
-.parallax-hero--simple .parallax-hero__single {
+.parallax-hero--simple .parallax-hero__single-layer {
   position: absolute;
   left: 50%;
   top: -14vh;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import far1 from "../../assets/Home/far1.webp";
 import far2 from "../../assets/Home/far2.webp";
@@ -17,8 +17,6 @@ const LAYERS = [
   { src: closest1, speed: 0.75 },
 ];
 
-const MOBILE_HERO = middle1;
-
 function ParallaxLayer({ src, speed }) {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, (v) => v * speed);
@@ -36,13 +34,20 @@ function ParallaxLayer({ src, speed }) {
 export default function ParallaxHero() {
   const reduceMotion = useReducedMotion();
   const [simple, setSimple] = useState(false);
+  const staticLayers = useMemo(() => [...LAYERS].reverse(), []);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
     const apply = () => setSimple(mq.matches);
     apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+
+    if (mq.addEventListener) {
+      mq.addEventListener("change", apply);
+      return () => mq.removeEventListener("change", apply);
+    }
+
+    mq.addListener(apply);
+    return () => mq.removeListener(apply);
   }, []);
 
   if (simple || reduceMotion) {
@@ -51,10 +56,13 @@ export default function ParallaxHero() {
         className={`parallax-hero parallax-hero--simple${reduceMotion && !simple ? " parallax-hero--reduced" : ""}`}
         aria-hidden="true"
       >
-        <div
-          className="parallax-hero__single"
-          style={{ backgroundImage: `url(${MOBILE_HERO})` }}
-        />
+        {staticLayers.map((layer, idx) => (
+          <div
+            key={`static-${layer.src}`}
+            className="parallax-hero__single-layer"
+            style={{ backgroundImage: `url(${layer.src})`, zIndex: idx + 1 }}
+          />
+        ))}
       </div>
     );
   }
