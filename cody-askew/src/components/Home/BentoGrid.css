@@ -1,13 +1,13 @@
 .bento-wrap {
   width: 100%;
-  max-width: 1020px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding-top: 0.35rem;
+  padding: clamp(1.6rem, 4vw, 2.8rem) clamp(0.45rem, 1.6vw, 0.9rem) 0;
   scroll-margin-top: 5.5rem;
 }
 
 .bento-section-head {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -28,68 +28,161 @@
 
 .bento-section__title {
   margin: 0;
-  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  font-size: clamp(1.1rem, 2.8vw, 1.45rem);
   font-family: "Poppins Bold", sans-serif;
   letter-spacing: 0.05em;
   color: var(--text-main);
 }
 
-/* Punch (TL) · Stack (TR) · Innovation (full row) · Proof (bottom) */
 .bento-grid {
   display: grid;
-  gap: var(--bento-gap, 1.125rem);
+  gap: 1rem;
   grid-template-columns: 1fr;
+  grid-auto-rows: minmax(230px, auto);
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) {
   .bento-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 280px;
   }
 
-  .bento-tile--punch {
-    grid-column: 1;
-    grid-row: 1 / span 2;
+  .bento-tile--bio {
+    grid-column: span 2;
   }
 
-  .bento-tile--stack {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-
-  .bento-tile--innovation {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
-
-  .bento-tile--case {
-    grid-column: 1 / -1;
-    grid-row: 4;
+  .bento-tile--case-modern {
+    grid-column: span 2;
   }
 }
 
-@media (min-width: 1024px) {
+.bento-grid .bento-tile {
+  position: relative;
+  padding: clamp(1.2rem, 2.8vw, 2rem);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(142, 154, 175, 0.2);
+  background: #2d1b36;
+  overflow: hidden;
+}
+
+.bento-grid .bento-tile__title {
+  margin: 0 0 0.55rem;
+  color: #e89abe;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bento-tile--bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bento-bio__body {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.15rem, 2.7vw, 1.78rem);
+  line-height: 1.3;
+  font-family: "Poppins SemiBold", sans-serif;
+}
+
+.bento-punch__meta--bio {
+  margin-top: 1.15rem;
+}
+
+.bento-tile--stack-modern {
+  background: #1b1b2f !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bento-tile--stack-modern .bento-tile__title {
+  color: #8e9aaf;
+}
+
+.bento-grid .bento-tech--modern {
+  gap: 0.75rem;
+}
+
+.bento-grid .bento-tech__cell--modern {
+  background: transparent;
+  border: 1px solid rgba(142, 154, 175, 0.2);
+  color: #fff;
+  min-height: 84px;
+  justify-content: center;
+}
+
+.bento-grid .bento-tech__cell--modern svg {
+  color: #e89abe;
+}
+
+.bento-tile--case-modern {
+  border-color: rgba(232, 154, 190, 0.25) !important;
+}
+
+.bento-case-modern__content {
+  position: relative;
+  z-index: 1;
+}
+
+.bento-case-modern__body {
+  max-width: 38ch;
+  color: #8e9aaf;
+  margin-bottom: 1.2rem;
+}
+
+.bento-case-modern__link {
+  border: 0;
+  border-bottom: 2px solid #e89abe;
+  background: transparent;
+  color: #fff;
+  padding: 0 0 0.15rem;
+  font-family: "Poppins SemiBold", sans-serif;
+  cursor: pointer;
+}
+
+.bento-case-modern__link:hover {
+  color: #e89abe;
+}
+
+.bento-case-modern__glow {
+  position: absolute;
+  right: -5rem;
+  bottom: -5rem;
+  width: 16rem;
+  height: 16rem;
+  background: rgba(232, 154, 190, 0.12);
+  filter: blur(48px);
+  border-radius: 999px;
+}
+
+.bento-tile--beyond-modern {
+  background: rgba(107, 142, 35, 0.1) !important;
+  border-color: rgba(107, 142, 35, 0.3) !important;
+}
+
+.bento-tile--beyond-modern .bento-tile__title {
+  color: #6b8e23;
+}
+
+.bento-beyond-modern__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+  display: grid;
+  gap: 0.45rem;
+}
+
+@media (max-width: 767px) {
   .bento-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: auto;
   }
 
-  .bento-tile--punch {
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
-  }
-
-  .bento-tile--stack {
-    grid-column: 3 / span 2;
-    grid-row: 1 / span 2;
-  }
-
-  .bento-tile--innovation {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
-
-  .bento-tile--case {
-    grid-column: 1 / -1;
-    grid-row: 4;
+  .bento-tech__cell--modern {
+    min-height: 72px;
   }
 }
 

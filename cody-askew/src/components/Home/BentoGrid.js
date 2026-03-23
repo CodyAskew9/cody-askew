@@ -3,31 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faReact,
   faNodeJs,
-  faJs,
-  faPython,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import { faDatabase, faCode, faLaptop } from "@fortawesome/free-solid-svg-icons";
-import CaseStudyPanel from "./CaseStudyPanel";
+import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 import {
   aboutSection,
-  punch,
-  stackTile,
-  techStack,
-  caseStudy,
-  innovation,
   social,
 } from "../../data/bentoContent";
 import "./BentoGrid.css";
 
-const techIcons = {
-  react: faReact,
-  node: faNodeJs,
-  js: faJs,
-  python: faPython,
-  database: faDatabase,
-  code: faCode,
-};
+const techItems = [
+  { label: "React", icon: faReact },
+  { label: "Node.js", icon: faNodeJs },
+  { label: "PostgreSQL", icon: faDatabase },
+];
+
+const beyondItems = ["🐾 Animal Welfare", "Family", "Gaming"];
 
 export default function BentoGrid() {
   const scrollResume = () => {
@@ -43,15 +34,13 @@ export default function BentoGrid() {
         </h2>
       </header>
       <div className="bento-grid">
-        <article className="bento-tile bento-tile--punch">
-          <h3 className="bento-tile__title">{punch.title}</h3>
-          <p className="bento-tile__body">{punch.body}</p>
-          <ul className="bento-chips">
-            {punch.chips.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
-          <p className="bento-punch__meta">
+        <article className="bento-tile bento-tile--bio">
+          <h3 className="bento-tile__title">Me in a nutshell</h3>
+          <p className="bento-bio__body">
+            Software Engineer specializing in scalable SaaS solutions with
+            Node.js and PostgreSQL, with a unique edge in NFC technology.
+          </p>
+          <p className="bento-punch__meta bento-punch__meta--bio">
             <a
               href={social.github}
               target="_blank"
@@ -62,61 +51,45 @@ export default function BentoGrid() {
               <span>Open GitHub</span>
             </a>
           </p>
-          <div className="bento-tile__accent" aria-hidden="true">
-            <FontAwesomeIcon icon={faLaptop} />
-          </div>
         </article>
 
-        <article className="bento-tile bento-tile--stack">
-          <h3 className="bento-tile__title">{stackTile.title}</h3>
-          <div className="bento-tech">
-            {techStack.map((t) => (
-              <div className="bento-tech__cell" key={t.label}>
-                <FontAwesomeIcon icon={techIcons[t.icon] || faCode} />
-                <span>{t.label}</span>
+        <article className="bento-tile bento-tile--stack-modern">
+          <h3 className="bento-tile__title">Tech Stack</h3>
+          <div className="bento-tech bento-tech--modern">
+            {techItems.map((item) => (
+              <div className="bento-tech__cell bento-tech__cell--modern" key={item.label}>
+                <FontAwesomeIcon icon={item.icon} />
+                <span>{item.label}</span>
               </div>
             ))}
           </div>
-          <div className="bento-stack__learning">
-            <p className="bento-stack__learning-label">
-              {stackTile.learningLabel}
-            </p>
-            <ul className="bento-stack__learning-list">
-              {stackTile.learningLines.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
         </article>
 
-        <article className="bento-tile bento-tile--sage bento-tile--innovation">
-          <p className="bento-innovation__kicker">{innovation.kicker}</p>
-          <h3 className="bento-tile__title bento-innovation__title">
-            {innovation.title}
-          </h3>
-          <div className="bento-innovation__layout">
-            <div className="bento-innovation__visual" aria-hidden="true">
-              <div className="bento-nfc-visual bento-nfc-visual--inline">
-                <span className="bento-nfc-visual__ring" />
-                <span className="bento-nfc-visual__chip" />
-              </div>
-            </div>
-            <p className="bento-tile__body bento-innovation__body">
-              {innovation.body}
+        <article className="bento-tile bento-tile--case-modern" id="proof">
+          <div className="bento-case-modern__content">
+            <h3 className="bento-tile__title">Case Study: RedshiftHR</h3>
+            <p className="bento-tile__body bento-case-modern__body">
+              Architecting a secure, API-first SaaS platform for enterprise
+              human resources.
             </p>
-          </div>
-        </article>
-
-        <article className="bento-tile bento-tile--case" id="proof">
-          <CaseStudyPanel caseStudy={caseStudy} emphasizeArchitecture>
             <button
               type="button"
-              className="btn highlighted-btn bento-case__cta"
+              className="bento-case-modern__link"
               onClick={scrollResume}
             >
-              View full résumé
+              Explore Architecture
             </button>
-          </CaseStudyPanel>
+          </div>
+          <div className="bento-case-modern__glow" aria-hidden="true" />
+        </article>
+
+        <article className="bento-tile bento-tile--beyond-modern">
+          <h3 className="bento-tile__title">Beyond the Code</h3>
+          <ul className="bento-beyond-modern__list">
+            {beyondItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </article>
       </div>
     </div>
