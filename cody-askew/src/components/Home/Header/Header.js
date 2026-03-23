@@ -1,78 +1,75 @@
-import React, { useState, useEffect } from 'react'
-import {TOTAL_SCREENS, GET_SCREEN_INDEX} from "../../../utilitys/commonUtils"
-import ScrollService from "../../../utilitys/scrollService"
-import {faBars} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import "./Header.css"
+import React, { useState } from "react";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Header.css";
 
+const NAV_LINKS = [
+  { id: "projects", label: "Projects" },
+  // { id: "ai-assistant", label: "AI Assistant" }, // hidden while AI section is disabled
+  { id: "ContactMe", label: "Contact" },
+];
 
 export default function Header() {
-    const [selectedScreen, setSelectedScreen] = useState(0);
-    const [showHeaderOptions, setShowHeaderOptions] = useState(false);
-  
-    const updateCurrentScreen = (currentScreen) => {
-      if (!currentScreen || !currentScreen.screenInView) return;
-  
-      let screenIndex = GET_SCREEN_INDEX(currentScreen.screenInView);
-      if (screenIndex < 0) return;
-    };
-    let currentScreenSubscription =
-      ScrollService.currentScreenBroadcaster.subscribe(updateCurrentScreen);
-  
-    const getHeaderOptions = () => {
-      return TOTAL_SCREENS.map((Screen, i) => (
-        <div
-          key={Screen.screen_name}
-          className={getHeaderOptionsClasses(i)}
-          onClick={() => switchScreen(i, Screen)}
-        >
-          <span>{Screen.screen_name}</span>
-        </div>
-      ));
-    };
-  
-    const getHeaderOptionsClasses = (index) => {
-      let classes = "header-option "
-      if (index < TOTAL_SCREENS.length - 1) classes += "header-option-separator";
-      
-      if (selectedScreen === index) classes += " selected-header-option";
-      console.log(classes)
-      return classes;
-      };
-  
-    const switchScreen = (index, screen) => {
-      let screenComponent = document.getElementById(screen.screen_name);
-      if (!screenComponent) return;
-  
-      screenComponent.scrollIntoView({ behavior: "smooth" });
-      setSelectedScreen(index);
-      setShowHeaderOptions(false);
-    };
-  
-    useEffect(() => {
-      return () => {
-        currentScreenSubscription.unsubscribe();
-      };
-    }, [currentScreenSubscription]);
-  
+  const [showMenu, setShowMenu] = useState(false);
 
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+    setShowMenu(false);
+  };
+
+  const goHome = () => {
+    const el = document.getElementById("Home");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+    setShowMenu(false);
+  };
 
   return (
-    <div className='header-container' onClick={() => setShowHeaderOptions(!showHeaderOptions)}>
-        <div className='header-parent'>
-            <div className='header-hamburger' onClick={() => setShowHeaderOptions(!showHeaderOptions)}>
-                <FontAwesomeIcon className='header-hamburger-bars' icon={faBars} />
-            </div>
-            <div className='header-logo'>
-                <span>
-                    CODY ASKEW
-                </span>
-            </div>
-            <div className={(showHeaderOptions) ? "header-options show-hamburger-options" : "header-options"}>
-                {getHeaderOptions()}
-            </div>
-        </div>
-
-    </div>
-  )
+    <header className="header-container">
+      {showMenu ? (
+        <button
+          type="button"
+          className="header-backdrop"
+          aria-label="Close menu"
+          onClick={() => setShowMenu(false)}
+        />
+      ) : null}
+      <div className="header-parent">
+        <button
+          type="button"
+          className="header-hamburger"
+          aria-expanded={showMenu}
+          aria-controls="site-nav-menu"
+          onClick={() => setShowMenu(!showMenu)}
+        >
+          <FontAwesomeIcon className="header-hamburger-bars" icon={faBars} />
+        </button>
+        <button type="button" className="header-logo" onClick={goHome}>
+          Cody Askew
+        </button>
+        <nav
+          id="site-nav-menu"
+          className={
+            showMenu ? "header-options show-hamburger-options" : "header-options"
+          }
+          aria-label="Primary"
+        >
+          {NAV_LINKS.map((link) => (
+            <button
+              key={link.id}
+              type="button"
+              className="header-option"
+              onClick={() => scrollToId(link.id)}
+            >
+              {link.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
 }

@@ -1,227 +1,254 @@
-import React, { useState } from 'react'
-import "./Resume.css"
-import ScreenHeading from '../../utilitys/ScreenHeading/ScreenHeading'
-import ScrollService from '../../utilitys/scrollService'
-import Animations from '../../utilitys/Animations'
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faReact,
+  faNodeJs,
+  faJs,
+  faPython,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faDatabase,
+  faCode,
+  faGraduationCap,
+  faMicrochip,
+  faGamepad,
+} from "@fortawesome/free-solid-svg-icons";
+import ScreenHeading from "../../utilitys/ScreenHeading/ScreenHeading";
+import ScrollService from "../../utilitys/scrollService";
+import CaseStudyPanel from "../Home/CaseStudyPanel";
+import {
+  caseStudy,
+  beyond,
+  hardware,
+  social,
+  techStack,
+} from "../../data/bentoContent";
+import "../Home/BentoGrid.css";
+import "./Resume.css";
 
-
-export default function Resume(props) {
-    const [selectedBulletIndex, setSelectedBulletIndex] = useState(0)
-    const [carousalOffSetStyle, setCarousalOffSetStyle] = useState({})
-
-    let fadeInScreenHandler = (screen) => {
-        if (screen.fadeScreen !== props.id) return;
-        Animations.animations.fadeInScreen(props.id);
-      };
-      const fadeInSubscription =
-        ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
-
-    const ResumeHeading = (props) => {
-        return(
-               <div className='resume-heading'>
-                   <div className='resume-main-heading'>
-                       <div className='heading-bullet'></div>
-                       <div>
-                           <span>{props.heading ? props.heading : ''}</span>
-                           {props.fromDate && props.toDate ? (
-                             <div className='heading-date'>
-                             {props.fromDate + "_" + props.toDate}
-                            </div>
-                    ) : (
-                        <div></div>
-                    )}
-                </div>
-                <div className='resume-sub-heading'>
-                    <span>
-                        {props.subHeading ? props.subHeading : " "}
-                    </span>
-                 </div>
-                 <div className='resume-heading-description'>
-                    <span>{props.description ? props.description : ""}</span>
-                </div>
-            </div>
-        </div>
-        )
-    }
-
-    const resumeBullets = [
-        {label: "Education", logoSrc: "education.svg"},
-        {label: "Work Experience", logoSrc: "work-history.svg"},
-        {label: "Programming Skills", logoSrc:"programming.svg"},
-        {label: "Projects", logoSrc: "projects.svg"},
-        {label: "Interests", logoSrc: "interests.svg"},
-    ];
-
-const programmingSkillDetails = [
-    {skill: "JavaScript", ratingPercentage: 70},
-    {skill: "ReactJS", ratingPercentage: 85},
-    {skill: "Express", ratingPercentage: 70},
-    {skill: "Node", ratingPercentage: 75},
-    {skill: "MongoDB", ratingPercentage: 80},
-    {skill: "SQL", ratingPercentage: 80},
-    {skill: "REST", ratingPercentage: 85},
-    {skill: "HTML", ratingPercentage: 85},
-    {skill: "CSS", ratingPercentage: 85},
-];
-
-const projectsDetails =[
-    {title:"Class Store",
-    duration: { fromDate: 2022, toDate:"Present" },
-    description: "A Amazon clone used by a third grade teacher to teach her students about the use of money",
-    subHeading: "Technologies Used: React JS, Redux, MangoDB, Node, Express"
-
-},
-    {title:"Keyless Remotes 4less",
-    duration: { fromDate: 2022, toDate:"Present" },
-    description: "A E-commerce site built for a friends small business",
-    subHeading: "Technologies Used: React JS, Bootstrap, MangoDb, Node, Express"
-
-},
-    {title:"Cody-Askew",
-    duration: { fromDate: 2022, toDate:"Present" },
-    description: "A Personal Portfolio Website",
-    subHeading: "Technologies Used: React JS, Bootstrap"
-
-},
-];
-
-const resumeDetails = [
-    <div className='resume-screen-container' key="education">
-        <ResumeHeading 
-        heading={"Bloom Institute For Technology"}
-        subHeading={"Certificate of Completion Full Stack Web Development"}
-        fromDate={"2021"}
-        toDate={"2022"}
-        />
-    </div>,
-    <div className='resume-screen-container' key="work-experience">
-        <div className="experience-container">
-        <ResumeHeading 
-        heading={"Albuquerque NFC"}
-        subHeading={"Owner Operator"}
-        fromDate={"2017"}
-        toDate={"2022"}
-        />
-        <div className='experience-description'>
-            <span className='resume-description-text'>
-                I am the owner of a small business selling and programming Near Field Communication products
-            </span>
-            <br/>
-        <ResumeHeading 
-        heading={"Vintage Motors"}
-        subHeading={"Finance Manager"}
-        fromDate={"2016"}
-        toDate={"2017"}
-        />
-            <span className='resume-description-text'>
-            Identified and capitalized on community business opportunities through  effective networking to establish lines of business and financing to establish vintage auto dealership
-            </span>
-            <br/>
-        <ResumeHeading 
-        heading={"Various Auto Dealerships"}
-        subHeading={"Internet Sales"}
-        fromDate={"2012"}
-        toDate={"2015"}
-        />
-            <span className='resume-description-text'>
-            Coached sales associates in product specifications, sales incentives and selling techniques, significantly increasing customer satisfaction ratings
-Responded to internet inquiries and phone calls in a timely manner
-            </span>
-            <br />
-            </div>
-            </div>
-        </div>,
-
-        <div className='resume-screen-container programming-skills-container' key="programming-skills">
-            {programmingSkillDetails.map((skill, index) =>(
-                <div className="skill-parent" key={index}>
-                    <div className='heading-bullet'></div>
-                      <span>{skill.skill}</span> 
-                    <div className='skill-percentage'>
-                        <div style={{width: skill.ratingPercentage + "%"}} className="active-percentage">
-                            </div>
-                        </div>
-                 </div>
-            ))}
-        </div>,
-
-        <div className='resume-screen-container' key="projects">
-            {projectsDetails.map((projectsDetails, index)=> (
-                <ResumeHeading
-                key={index}
-                heading={projectsDetails.title}
-                subHeading={projectsDetails.subHeading}
-                description={projectsDetails.description}
-                fromDate={projectsDetails.duration.fromDate}
-                toDate={projectsDetails.duration.toDate}
-                />
-            ))}
-        </div>,
-
-        <div className='resume-screen-container' key="interest">
-        <ResumeHeading
-                heading="Teaching"
-                subHeading="I have a dream to start a after school program to help teach young people coding and computer skills."
-                />
-        <ResumeHeading
-                heading="Tech"
-                subHeading="I love new and interesting tech. I have smart rings watches a NFC chip in my hand if it is new futuristic tech I am into it."
-                />
-        <ResumeHeading
-                heading="Gaming"
-                subHeading="I started playing video games at a young age. As someone with a bleeding disorder I wasn't allowed to go outside and play like other kids the risks were too high so games were my escape"
-                />
-    </div>
-];
-
-const handleCarousal = (index) => {
-    let offsetHeight = 360;
-    let newCarousalOffset = {
-        style: {transform: "translateY(" + index * offsetHeight * -1 +"px)"}
-    };
-    setCarousalOffSetStyle(newCarousalOffset)
-    setSelectedBulletIndex(index)
+const techIcons = {
+  react: faReact,
+  node: faNodeJs,
+  js: faJs,
+  python: faPython,
+  database: faDatabase,
+  code: faCode,
 };
 
-const getBullets = () => {
-    return resumeBullets.map((bullet, index) =>{
-        return (
-            <div onClick={() => handleCarousal(index)} className={index=== selectedBulletIndex ? "bullet selected-bullet" : "bullet"}
-                key={index}>
-                <img className='bullet-logo' src={require(`../../assets/Resume/${bullet.logoSrc}`
-                )}
-                    alt='no internet connection' />
-                    <span className='bullet-label'>{bullet.label}</span>
-            </div>
-        )
-    })
-}
-   
-const getResumeScreens = () => {
-    return(
-        <div style={carousalOffSetStyle.style}
-        className='resume-detail-carousal'>
-            {resumeDetails.map((resumeDetails) => resumeDetails)}
+const beyondIcons = {
+  graduation: faGraduationCap,
+  microchip: faMicrochip,
+  gamepad: faGamepad,
+};
 
-        </div>
-    )
-}
+const experience = [
+  {
+    org: "Altura Preparatory School",
+    role: "Coding Instructor · Grades K–5",
+    range: "2023 – Present",
+    text: "Delivers age-appropriate CS instruction; designs original curricula, differentiates by readiness, and keeps an engaging, inclusive classroom.",
+  },
+  {
+    org: "Cod-IE (self-owned)",
+    role: "Founder · Coding instruction (ages 8+)",
+    range: "2022 – Present",
+    text: "Python, Scratch, and Pygame; owns sequencing, projects, pacing, and family communication—entrepreneurship plus pedagogy.",
+  },
+  {
+    org: "Albuquerque NFC",
+    role: "Owner · Operator",
+    range: "2017 – 2022",
+    text: "Owned and operated an NFC product and programming business—scoping, delivery, and client work that paralleled software engineering discipline (business closed 2022).",
+  },
+  {
+    org: "Vintage Motors",
+    role: "Finance Manager",
+    range: "2016 – 2017",
+    text: "Financing and business development for a vintage auto dealership—networking, structured sales, clear customer communication.",
+  },
+  {
+    org: "Auto dealerships (various)",
+    role: "Internet sales · team coaching",
+    range: "2012 – 2015",
+    text: "Coached on product and incentives; owned digital and phone lead follow-up—higher satisfaction and conversion discipline.",
+  },
+];
 
+const skillBars = [
+  { skill: "React / Redux", pct: 90 },
+  { skill: "JavaScript (ES6+)", pct: 88 },
+  { skill: "Node.js / Express", pct: 84 },
+  { skill: "PostgreSQL / SQL", pct: 82 },
+  { skill: "MongoDB", pct: 82 },
+  { skill: "Jest / Cypress", pct: 78 },
+  { skill: "REST / Axios", pct: 86 },
+  { skill: "HTML / CSS", pct: 88 },
+  { skill: "Python (instruction)", pct: 76 },
+];
+
+const additionalProjects = [
+  {
+    title: "African Marketplace",
+    meta: "2021 – 2022",
+    line:
+      "SMB marketplace—React, Styled Components, Axios CRUD; team of 4; Vercel & Heroku.",
+  },
+  {
+    title: "Class Store",
+    meta: "2022 – Present",
+    line:
+      "Classroom economy app in production with a teacher—React, Redux, MERN.",
+  },
+  {
+    title: "Potluck Planner",
+    meta: "Frontend",
+    line: "Auth flows and polished planning UI—React & Styled Components.",
+  },
+  {
+    title: "Keyless Remotes 4 Less",
+    meta: "2022 – Present",
+    line: "Small-business e-commerce—React, Bootstrap, MERN.",
+  },
+];
+
+export default function Resume(props) {
   return (
-    <div className='resume-container screen-container' id= {props.id || ""}>
-        <div className='resume-content'>
-            <ScreenHeading title={'Resume'} subHeading={'My Formal Bio Details'} />
-            <div className='resume-card'>
-                <div className='resume-bullets'>
-                    <div className='bullet-container'>
-                        <div className='bullet-icons'>
-                        </div>
-                        <div className='bullets'>{getBullets()}</div>
+    <div
+      className="resume-container screen-container"
+      id={props.id || ""}
+    >
+      <div className="resume-content">
+        <ScreenHeading
+          title="Resume"
+          subHeading="Engineering · instruction · impact"
+        />
+        <div className="resume-bento-wrap">
+          <div className="resume-bento-grid">
+            <article className="bento-tile resume-tile resume-tile--work">
+              <h2 className="bento-tile__title">EXPERIENCE</h2>
+              <div className="resume-job-list">
+                {experience.map((job) => (
+                  <div className="resume-job" key={job.org}>
+                    <div className="resume-job__head">
+                      <h3 className="resume-job__org">{job.org}</h3>
+                      <span className="resume-job__range">{job.range}</span>
                     </div>
-                </div>
-                <div className='resume-bullets-details'>{getResumeScreens()}</div>
-            </div>
+                    <p className="resume-job__role">{job.role}</p>
+                    <p className="resume-job__text">{job.text}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="bento-tile resume-tile resume-tile--skills">
+              <h2 className="bento-tile__title">SKILL DEPTH</h2>
+              <div className="resume-tech-icons">
+                {techStack.map((t) => (
+                  <div className="resume-tech-icons__cell" key={t.label}>
+                    <FontAwesomeIcon
+                      icon={techIcons[t.icon] || faCode}
+                    />
+                    <span>{t.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="resume-skill-bars">
+                {skillBars.map((s) => (
+                  <div className="resume-skill-row" key={s.skill}>
+                    <span className="resume-skill-row__label">{s.skill}</span>
+                    <div className="resume-skill-row__track">
+                      <div
+                        className="resume-skill-row__fill"
+                        style={{ width: `${s.pct}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="bento-tile resume-tile resume-tile--github">
+              <h2 className="bento-tile__title bento-tile__title--sm">
+                GLOBAL COMMIT
+              </h2>
+              <a
+                className="resume-github-link"
+                href={social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} size="3x" />
+                <span>Open GitHub</span>
+              </a>
+            </article>
+
+            <article className="bento-tile resume-tile resume-tile--flagship">
+              <CaseStudyPanel caseStudy={caseStudy} centered>
+                <button
+                  type="button"
+                  className="btn highlighted-btn resume-flagship-cta"
+                  onClick={() =>
+                    ScrollService.scrollHandler.scrollToHireMe()
+                  }
+                >
+                  Let&apos;s talk
+                </button>
+              </CaseStudyPanel>
+            </article>
+
+            <article className="bento-tile resume-tile resume-tile--more">
+              <h2 className="bento-tile__title">MORE BUILDS</h2>
+              <div className="resume-mini-projects">
+                {additionalProjects.map((p) => (
+                  <div className="resume-mini-project" key={p.title}>
+                    <div className="resume-mini-project__head">
+                      <h3>{p.title}</h3>
+                      <span>{p.meta}</span>
+                    </div>
+                    <p>{p.line}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="bento-tile resume-tile resume-tile--beyond">
+              <h2 className="bento-tile__title">{beyond.title}</h2>
+              <div className="bento-beyond">
+                {beyond.items.map((item) => (
+                  <div className="bento-beyond__item" key={item.title}>
+                    <FontAwesomeIcon
+                      icon={beyondIcons[item.icon] || faCode}
+                      className="bento-beyond__icon"
+                    />
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article
+              className="bento-tile resume-tile resume-tile--nfc-visual"
+              aria-label="NFC hardware accent"
+            >
+              <div className="bento-nfc-visual">
+                <span className="bento-nfc-visual__ring" aria-hidden />
+                <span className="bento-nfc-visual__chip" aria-hidden />
+              </div>
+            </article>
+
+            <article className="bento-tile resume-tile resume-tile--hw">
+              <h2 className="bento-tile__title bento-tile__title--sm">
+                {hardware.title}
+              </h2>
+              <p className="bento-tile__body">{hardware.body}</p>
+            </article>
+          </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }

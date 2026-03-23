@@ -2,7 +2,43 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url("../../assets/Home/bg2.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.home-hero {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.home-hero__chrome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+}
+
+.home-hero__content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1240px;
+    padding: 0 1.25rem 3.5rem;
+    margin: 0 auto;
+}
+
+.home-hero__intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(4.75rem, 11vh, 6.5rem) 0 2rem;
+    box-sizing: border-box;
 }

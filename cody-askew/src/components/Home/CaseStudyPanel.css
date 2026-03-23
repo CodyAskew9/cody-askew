@@ -1,0 +1,113 @@
+.case-study {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+  align-items: stretch;
+}
+
+.case-study--centered {
+  text-align: center;
+  align-items: center;
+}
+
+.case-study--centered .case-study__engineering {
+  text-align: left;
+  align-self: stretch;
+}
+
+.case-study__cta {
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+.case-study__flow {
+  justify-content: center;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.case-study__subtitle {
+  margin: 0 0 0.25rem;
+  font-size: 0.88rem;
+  font-family: "Poppins SemiBold", sans-serif;
+  color: var(--sandia-pink);
+  letter-spacing: 0.04em;
+}
+
+.case-study__challenge,
+.case-study__stack,
+.case-study__result {
+  margin: 0;
+  text-align: inherit;
+}
+
+.case-study__stack {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.case-study__engineering {
+  margin: 0.2rem 0 0.1rem;
+  padding: 0 0 0 0.95rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.case-study__engineering li + li {
+  margin-top: 0.3rem;
+}
+
+.case-study__engineering-title {
+  display: block;
+  font-family: "Poppins SemiBold", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 0.08rem;
+}
+
+.case-study__result {
+  font-size: 0.72rem;
+  line-height: 1.38;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.case-study .bento-flow {
+  margin-top: 0.2rem;
+}
+
+.case-study__architecture {
+  margin: 0.05rem 0 0.3rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: "Poppins SemiBold", sans-serif;
+  color: rgba(232, 154, 190, 0.95);
+}
+
+.diagram-flow {
+  padding: 0.5rem 0.45rem;
+  margin: 0.15rem 0 0.45rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(232, 154, 190, 0.3);
+  box-shadow: 0 0 14px rgba(232, 154, 190, 0.08) inset;
+}
+
+.diagram-flow__step {
+  border: 1px solid rgba(232, 154, 190, 0.4);
+  background: rgba(27, 27, 47, 0.65);
+  min-width: 4.25rem;
+  padding: 0.38rem 0.45rem;
+}
+
+.diagram-flow__step svg {
+  color: var(--sandia-pink);
+  filter: drop-shadow(0 0 6px rgba(232, 154, 190, 0.4));
+}

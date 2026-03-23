@@ -1,222 +1,285 @@
-.resume-container{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    min-height: fit-content;
-    margin: 120px 0;
+.resume-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: fit-content;
+  margin: 80px 0 100px;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
-.resume-card{
-    display: flex;
-    height: 360px;
-    width: 1000px;
-}
-.resume-bullets{
-    height: 100%;
-    box-shadow: 15px 0 9px -15px #1f2235;
-    width: 320px;
-}
-.resume-bullets-details{
-    flex-grow: 1;
-    width: 600px;
-    overflow: hidden;
-    padding: 0 0 0 80px;
+.resume-content {
+  width: 100%;
+  max-width: 1200px;
 }
 
-.experience-description{
-    margin: 10px 0 15px 0;
-    text-align: justify;
-    max-width: 100%;
+.resume-bento-wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
 }
-.resume-description-text {
-    font-size: 12px;
+
+.resume-bento-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    "work work skills skills"
+    "work work skills skills"
+    "github flagship flagship flagship"
+    "more more beyond nfc"
+    "more more beyond hw";
+}
+
+.resume-tile--work {
+  grid-area: work;
+  min-height: 0;
+}
+
+.resume-tile--skills {
+  grid-area: skills;
+}
+
+.resume-tile--github {
+  grid-area: github;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 120px;
+}
+
+.resume-tile--flagship {
+  grid-area: flagship;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.resume-tile--more {
+  grid-area: more;
+}
+
+.resume-tile--beyond {
+  grid-area: beyond;
+}
+
+.resume-tile--nfc-visual {
+  grid-area: nfc;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.resume-tile--hw {
+  grid-area: hw;
+}
+
+.resume-job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.resume-job__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+}
+
+.resume-job__org {
+  margin: 0;
+  font-size: 0.9rem;
+  font-family: "Poppins SemiBold", sans-serif;
+  color: var(--color-cta);
+  letter-spacing: 0.02em;
+}
+
+.resume-job__range {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--color-cta);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.resume-job__role {
+  margin: 0.25rem 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.resume-job__text {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.resume-tech-icons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.resume-tech-icons__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.2rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.12);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.resume-tech-icons__cell svg {
+  font-size: 1.2rem;
+  color: var(--color-cta);
+}
+
+.resume-skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.resume-skill-row__label {
+  display: block;
+  font-size: 0.68rem;
+  margin-bottom: 0.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.resume-skill-row__track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.resume-skill-row__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-cta);
+  transition: width 0.6s ease;
+}
+
+.resume-github-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.resume-github-link:hover {
+  color: var(--color-cta);
+}
+
+.resume-flagship-cta {
+  margin-top: auto;
+}
+
+.resume-mini-projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.resume-mini-project {
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.resume-mini-project__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.resume-mini-project__head h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--color-cta);
+  font-family: "Poppins SemiBold", sans-serif;
+}
+
+.resume-mini-project__head span {
+  font-size: 0.65rem;
+  opacity: 0.85;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.resume-mini-project p {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 1023px) {
+  .resume-bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "work"
+      "skills"
+      "github"
+      "flagship"
+      "more"
+      "beyond"
+      "nfc"
+      "hw";
   }
-.resume-details-carousal{
-    transition: transform 1s ease-out;
 
-}
-.bullet-container{
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-.bullets{
-    width: 80%;
-    position: relative;
-    z-index: 2;
-}
-.bullet{
-    display: flex;
-    align-items: center;
-    background-color: #1f2235;
-    height: 40px;
-    margin: 15px 0;
-    padding: 0 8px;
-    border-radius: 20px;
-    width: 30px;
-    transition: width 0.6s ease;
-    cursor: pointer;
-}
-.bullet-label{
-    font-size: 14px;
-    white-space: nowrap;
-    font-family: "Poppins SemiBold";
-}
-.bullet-logo{
-    height: 16px;
-    margin: 0 30px 0 0;
-}
-.bullet-icons{
-    width: 32px;
-    height: 100%;
-    z-index: 1;
-    background-color: #1f2235;
-    position: absolute;
-}
-.selected-bullet{
-    color: white;
-    width: 100%;
-}
-.resume-screen-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 360px;
-    width: 100%;
-}
-.resume-heading{
-    display: flex;
-    flex-direction: column;
-}
-.resume-main-heading{
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-}
-.resume-main-heading span {
-    color: #1e0283;
-    font-size: 16px;
-    font-family: "Poppins SemiBold";
+  .resume-job-list {
+    max-height: none;
+    overflow: visible;
   }
-  .experience-description {
-    max-width: 100%;
-  }
-.heading-bullet{
-    position: absolute;
-    left: -30px;
-    height: 15px;
-    width: 15px;
-    top:5px;
-    background-color: #1e0283;
-}
-.resume-sub-heading{
-    font-size: 14px;
-    font-family: "Poppins bold";
-    color: #111;
-    margin: 10px 0 0 0;
-}
-.resume-heading-description{
-    font-size: 12px;
-    text-align: justify;
 
-}
-.heading-date{
-    background-color: #1e0283;
-    padding: 4px 12px;
-    font-size: 14px;
-    border-radius: 14px;
-    color: white;
-}
-.skill-parent{
-    display: flex;
+  .resume-mini-projects {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-tile--flagship .bento-flow {
     flex-direction: column;
-    position: relative;
-    width: 50%;
-}
-.programming-skills-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.skill-percentage{
-    position: relative;
-    height: 15px;
-    width: 70%;
-    background-color: #1e0283;
-}
-.skill-percentage .active-percentage{
-    height: 15px;
-    transition: 0.8s ease;
-    position: absolute;
-    background-color: #1f2235;
-}
-.skill-parent span{
-    font-family: "Poppins Simibold";
-    font-size: 16px;
-    color: #1e0283;
-}
-@media only screen and (max-width: 1110px){
-    .resume-card{
-        width: 880px;
-    }
-    .resume-bullets-details{
-        padding: 0 0 0 70px;
-    }
-}
-@media only screen and (max-width: 1023px){
-    .resume-screen-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .bullets{
-        width: 90%;
-    
-    }
-    .resume-card{
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        margin: 30px 0;
-        align-items: center;
-        width: 90%;
-    }
-    .resume-bullets-details{
-        height: 360px;
-        width: fit-content;
-        padding: 0;
-    }
-    .resume-bullets{
-        width: 100%;
-        margin: 30px 0;
-    }
-    .selected-bullet{
-        width: 100%;
-        
-    }
-    
-.programming-skills-container{
-    width: 100%;
-    height: fit-content;
-    margin: 5px 0 0 0;
-}
-.experience-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 90px;
-    width: 100%;
-    height: fit-content;
-    padding: 0;
-}
-.experience-description {
-    height: fit-content;
-    max-width: 100%;
+  }
+
+  .resume-tile--flagship .bento-flow__arrow {
+    width: 2px;
+    height: 1rem;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(232, 154, 190, 0.9),
+      transparent
+    );
   }
 }

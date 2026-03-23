@@ -1,88 +1,151 @@
-.header-contain{
-    display: flex;
-    justify-content: center;
-    height: 140px;
-    color: white;
+.header-container {
+  position: relative;
+  z-index: 20;
+  width: 100%;
 }
-.header-parent{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 70%;
-    color: white;
-}
-.header-logo{
-    font-size: 50px;
-    font-family: "Poppins ExtraBold";
-    color: white;
-}
-.header-options {
-    display: flex;
-    align-items: center;
-}
-.header-option{
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 600;
-}
-.header-hamburger{
-    display: none;
-    color: white;
 
+.header-parent {
+  position: relative;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.65rem 1.25rem;
+  min-height: 3.25rem;
+  box-sizing: border-box;
 }
-.header-option-separator{
-    margin: 0 50px 0 0;
-    color: white;
+
+.header-logo {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-family: "Poppins ExtraBold", sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-align: left;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-.selected-header-option{
-    color: #1e0283;
+
+.header-logo:hover {
+  color: rgba(255, 255, 255, 0.92);
 }
-@media only screen and (max-width: 1110px){
-    .header-parent{
-        width: 80%;
-    }
+
+.header-options {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem 1.75rem;
 }
-@media only screen and (max-width: 970px){
-    .header-hamburger{
-        display: block;
-    }
-    .header-parent{
-        width: 100%;
-        padding: 0 40px;
-        position: relative;
-    }
-    .header-options{
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        left: -100%;
-        top: 0px;
-        height: 100vh;
-        width: 100%;
-        justify-content: space-around;
-        background-color: #1f2235;
-        z-index: 1000;
-        opacity: 0.8;
-        transition: all 0.8s ease-out;
-    }
-    .header-option-separator{
-        margin: 0;
-    }
-    .selected-header-option{
-        color: white;
-    }
-    .header-option{
-        color: white;
-    }
-    .header-hamburger-bars{
-        font-size: 30px;
-        cursor: pointer;
-        margin: 0px 10px;
-        color: white;
-    }
-    .show-hamburger-options{
-        left: 0;
-        opacity: 1;
-    }
+
+.header-option {
+  margin: 0;
+  padding: 0.35rem 0.15rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: "Poppins SemiBold", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  transition: color 0.2s ease;
+}
+
+.header-option:hover {
+  color: var(--sandia-pink);
+}
+
+.header-hamburger {
+  display: none;
+  margin: 0;
+  padding: 0.35rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.header-hamburger-bars {
+  font-size: 1.35rem;
+}
+
+.header-backdrop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header-container {
+    background: linear-gradient(
+      180deg,
+      rgba(107, 142, 35, 0.96) 0%,
+      rgba(82, 112, 26, 0.94) 100%
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@media (max-width: 767px) {
+  .header-hamburger {
+    display: block;
+  }
+
+  .header-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+  }
+
+  .header-options {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: min(100%, 320px);
+    padding: 5rem 1.5rem 2rem;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    background-color: var(--header-hamburger-background);
+    border-right: 1px solid rgba(232, 154, 190, 0.2);
+    z-index: 1002;
+    transform: translateX(-105%);
+    opacity: 0.96;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    align-items: flex-start;
+  }
+
+  .header-option {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+  }
+
+  .show-hamburger-options {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .header-container {
+    background: transparent;
+  }
 }

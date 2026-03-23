@@ -9,12 +9,12 @@
     max-width: 1100px;
     padding: 10px;
     display: flex;
-    box-shadow: 0 0px 20px -2px #1f2235;
+    box-shadow: 0 0px 20px -2px var(--color-surface-shadow);
     border-radius: 12px;
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
-    background-color: #1f2235;
+    background-color: var(--color-body-bg);
   }
   
   .central-form h2 {
@@ -58,26 +58,26 @@
     margin-top: -52px;
     opacity: 0.9;
     background-color: white;
-    box-shadow: 0 0px 20px -2px #1f2235;
+    box-shadow: 0 0px 20px -2px var(--color-surface-shadow);
     border-radius: 12px;
   }
   
-  form p {
+  .back-form form p {
     text-align: center;
     margin-bottom: 10px;
-    color: #1e0283;
+    color: var(--color-cta);
     letter-spacing: 0.1rem;
     font-family: "Poppins Bold";
   }
   
-  form label {
+  .back-form form label {
     margin-bottom: 5px;
-    color: #111;
+    color: var(--color-text-on-light);
     letter-spacing: 0.2rem;
   }
   
-  form input,
-  textarea {
+  .back-form form input,
+  .back-form form textarea {
     width: 100%;
     border: 2px solid rgba(0, 0, 0, 0);
     outline: none;
@@ -89,35 +89,69 @@
     border-radius: 10px;
   }
   
-  textarea:focus {
-    border: 2px solid rgba(30, 85, 250, 0.47);
+  .back-form form textarea:focus {
+    border: 2px solid rgba(232, 154, 190, 0.65);
     background-color: #fff;
   }
-  form input:focus {
-    border: 2px solid rgba(30, 85, 250, 0.47);
+  .back-form form input:focus {
+    border: 2px solid rgba(232, 154, 190, 0.65);
     background-color: #fff;
   }
   
-  form button {
+  .back-form form button {
     margin-top: 15px;
     padding: 5px;
     outline: none;
     width: 900px;
-    color: rgb(230, 227, 227);
-    border: 2px solid #1e0283;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-cta);
     font-size: 12px;
     border-radius: 19px;
-    background-color: #1f2235;
+    background-color: var(--color-cta);
     font-size: 18px;
     width: 160px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
   
-  form button:hover {
-    background-color: #1f2235;
-    transition: all ease 1s;
-    border: 2px solid #1f2235;
+  .back-form form button:hover {
+    background-color: var(--color-cta-hover);
+    transition: all ease 0.25s;
+    border: 2px solid var(--color-cta-hover);
+  }
+
+  .back-form form button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .contact-form__status {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    text-align: center;
+    font-family: "Poppins Regular", sans-serif;
+  }
+
+  .contact-form__status--success {
+    background: rgba(107, 142, 35, 0.18);
+    color: #2d4a14;
+    border: 1px solid rgba(107, 142, 35, 0.45);
+  }
+
+  .contact-form__status--error {
+    background: rgba(180, 40, 40, 0.1);
+    color: #6b1515;
+    border: 1px solid rgba(180, 40, 40, 0.35);
+  }
+
+  .contact-form__status--sending {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text-on-light);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
   
   button .load {
@@ -151,7 +185,7 @@
       margin-right: 20px;
     }
   
-    form {
+    .back-form form {
       flex: 0.9;
     }
   }

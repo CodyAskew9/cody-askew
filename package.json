@@ -1,0 +1,12 @@
+{
+  "name": "cody-askew-monorepo",
+  "private": true,
+  "description": "Run scripts from repo root; the React app is in ./cody-askew",
+  "scripts": {
+    "start": "npm run start --prefix cody-askew",
+    "server": "npm run server --prefix cody-askew",
+    "dev": "npm run dev --prefix cody-askew",
+    "build": "npm run build --prefix cody-askew",
+    "test": "npm run test --prefix cody-askew"
+  }
+}

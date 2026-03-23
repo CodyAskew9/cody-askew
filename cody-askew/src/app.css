@@ -1,21 +1,55 @@
-root{
-    --light-blue : #04C3FF;
-    --light-blue-shadow:  rgb(69 211 255 / 27%);
-    --sea-green: #0ABEAD;
-    --sea-green-dark: #0CBFAE;
-    --sea-green-extra-dark: #09BEAD;
-    --sea-green-shadow: rgba(11, 190, 173,0.4);
-    --header-hamburger-background : rgba(11, 190, 173,0.8);
-    --orange: #1e0283;
-    --dark-orange: #1e0283;
-    --orange-shadow: rgba(245, 127, 23,0.2);
-    --white: #ffffff;
-    --black: #333333;
-    --disabled-btn: #09bead7a;
-    --error-message:  #e44f4fd1;
-    --toast-error: #e44f4ffa;
-    --toast-shadow:  #9c9c9ce3;
-    --toast-success: #0CBFAE;
-    --loader-color: #0CBFAE
-}
+:root {
+  --sandia-pink: #e89abe;
+  --midnight-indigo: #1b1b2f;
+  --abq-sage: #6b8e23;
+  --text-main: #ffffff;
+  --slate-muted: #8e9aaf;
 
+  /* Derived (use across components) */
+  --color-body-bg: var(--midnight-indigo);
+  --color-cta: var(--abq-sage);
+  --color-cta-hover: #5a781d;
+  --color-text-primary: var(--text-main);
+  --color-accent-pink: var(--sandia-pink);
+  --color-text-on-light: #3d3d52;
+  --color-surface-muted: #2a2a45;
+  --color-surface-shadow: rgba(0, 0, 0, 0.45);
+  --color-tile-bg: rgba(27, 27, 47, 0.72);
+  --color-tile-bg-pinkwash: linear-gradient(
+    155deg,
+    rgba(27, 27, 47, 0.88) 0%,
+    rgba(27, 27, 47, 0.78) 45%,
+    rgba(232, 154, 190, 0.09) 100%
+  );
+  --color-tile-border: rgba(232, 154, 190, 0.55);
+  --color-tile-glow-pink: rgba(232, 154, 190, 0.35);
+  --color-tile-glow-outer: 0 0 16px rgba(232, 154, 190, 0.22),
+    0 0 32px rgba(232, 154, 190, 0.08);
+  --color-tile-sage: linear-gradient(
+    165deg,
+    rgba(107, 142, 35, 0.98) 0%,
+    rgba(74, 102, 28, 0.99) 100%
+  );
+  --color-tile-glow-sage: rgba(107, 142, 35, 0.35);
+  --bento-radius: 14px;
+  --bento-gap: 0.65rem;
+
+  --light-blue: #04c3ff;
+  --light-blue-shadow: rgb(69 211 255 / 27%);
+  --sea-green: #0abead;
+  --sea-green-dark: #0cbfae;
+  --sea-green-extra-dark: #09bead;
+  --sea-green-shadow: rgba(11, 190, 173, 0.4);
+  --header-hamburger-background: rgba(27, 27, 47, 0.96);
+  --orange: var(--abq-sage);
+  --dark-orange: var(--color-cta-hover);
+  --orange-shadow: var(--color-tile-glow-pink);
+  --white: var(--text-main);
+  --black: #333333;
+  --disabled-btn: rgba(107, 142, 35, 0.48);
+  --error-message: #e44f4fd1;
+  --toast-error: #e44f4ffa;
+  --toast-shadow: #9c9c9ce3;
+  --toast-success: var(--abq-sage);
+  --loader-color: var(--abq-sage);
+}

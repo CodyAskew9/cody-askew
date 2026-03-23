@@ -12,7 +12,7 @@
 .about-me-card{
     display: flex;
     width: 100%;
-    box-shadow: 0 0px 20px -2px #1f2235;
+    box-shadow: 0 0px 20px -2px var(--color-surface-shadow);
 }
 .about-me-profile{
     width: 50%;
@@ -25,9 +25,11 @@
     width: 48%;
     text-align: justify;
     padding: 30px;
+    color: var(--color-text-primary);
 }
 .about-me-description{
     font-size: 12px;
+    color: rgba(255, 255, 255, 0.88);
 }
 .about-me-highlights{
     margin: 80px 0;
@@ -43,12 +45,13 @@
     align-items: center;
     margin: 5px 0;
     font-size: 12px;
+    color: rgba(255, 255, 255, 0.92);
 }
 .highlight-blob{
     height: 12px;
     width: 12px;
     margin: 0 10px 0 0;
-    background-color: #1e0283;
+    background-color: var(--color-cta);
     border-radius: 50%;
 }
 .about-me-options .highlighted-btn{

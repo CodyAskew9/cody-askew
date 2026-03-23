@@ -55,15 +55,10 @@ export default function Profile() {
                   {""}
                   Hire me{" "}
               </button>
-              <a href="resume.PDF" download="resume.PDF">
+              <a href={`${process.env.PUBLIC_URL}/Cody-Askew-Resume.pdf`} download="Cody-Askew-Resume.pdf">
                   <button className="btn highlighted-btn">Get Resume</button>
               </a>
           </div>
-        </div>
-        <div className="profile-picture">
-            <div className="profile-picture-background">
-
-            </div>
         </div>
       </div>
     </div>
