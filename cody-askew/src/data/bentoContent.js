@@ -111,9 +111,3 @@ export const social = {
   github: "https://github.com/CodyAskew9",
   linkedin: "https://www.linkedin.com/in/codyaskew/",
 };
-
-/** Set to your NFC / digital business card URL when available */
-export const nfc = {
-  label: "Scan NFC",
-  url: "#",
-};

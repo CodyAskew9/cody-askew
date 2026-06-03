@@ -1,8 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faFilePdf, faWifi } from "@fortawesome/free-solid-svg-icons";
-import { social, nfc } from "../../../data/bentoContent";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { social } from "../../../data/bentoContent";
 import "./Footer.css";
 
 export default function Footer() {
@@ -39,18 +39,6 @@ export default function Footer() {
         >
           <FontAwesomeIcon icon={faFilePdf} />
           <span className="site-footer__label">Résumé</span>
-        </a>
-        <a
-          className="site-footer__link site-footer__link--nfc"
-          href={nfc.url}
-          onClick={(e) => {
-            if (!nfc.url || nfc.url === "#") e.preventDefault();
-          }}
-          aria-label={nfc.label}
-          title="Programmable NFC or digital card URL"
-        >
-          <FontAwesomeIcon icon={faWifi} />
-          <span className="site-footer__label">Scan NFC</span>
         </a>
       </div>
     </footer>

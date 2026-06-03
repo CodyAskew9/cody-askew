@@ -14,7 +14,6 @@ const mapAllScreens = () => {
   return (
     <div className='portfolio-container'>
         {mapAllScreens()}
-
     </div>
   )
 }

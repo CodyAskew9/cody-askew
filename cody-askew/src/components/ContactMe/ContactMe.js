@@ -7,6 +7,7 @@ import ScreenHeading from "../../utilitys/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilitys/scrollService";
 import Animations from "../../utilitys/Animations";
 import Footer from "../../components/Footer/Footer";
+import SiteFooter from "../Home/Footer/Footer";
 import "./ContactMe.css";
 
 function envTrim(key, fallback) {
@@ -39,6 +40,11 @@ export default function ContactUs(props) {
       Animations.animations.fadeInScreen(props.id);
     });
     return () => sub.unsubscribe();
+  }, [props.id]);
+
+  /* Contact is the only fade-in screen; reveal on mount so it isn’t stuck at opacity 0 */
+  useEffect(() => {
+    if (props.id) Animations.animations.fadeInScreen(props.id);
   }, [props.id]);
 
   const form = useRef();
@@ -175,6 +181,7 @@ export default function ContactUs(props) {
           </form>
         </div>
       </div>
+      <SiteFooter />
       <Footer />
     </div>
   );

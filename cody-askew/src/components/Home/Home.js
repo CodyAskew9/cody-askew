@@ -1,6 +1,5 @@
 import React from "react";
 
-import Footer from "./Footer/Footer";
 import "../Home/Home.css";
 import Header from "./Header/Header";
 import ParallaxHero from "./ParallaxHero";
@@ -22,7 +21,6 @@ export default function Home(props) {
         </div>
       </div>
       {/* <AIAssistant /> */}
-      <Footer />
     </div>
   );
 }

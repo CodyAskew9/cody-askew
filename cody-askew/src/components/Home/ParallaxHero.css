@@ -12,10 +12,11 @@
   pointer-events: none;
 }
 
+/* Shared frame for fallback + every layer (must stay identical for alignment) */
+.parallax-hero__fallback,
 .parallax-hero__layer {
   position: absolute;
   left: 50%;
-  /* Extra height + negative top so parallax motion and cover scaling don’t clip edges */
   top: -14vh;
   width: 118%;
   height: 128vh;
@@ -24,26 +25,39 @@
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
+}
+
+.parallax-hero__fallback {
+  z-index: 0;
+}
+
+.parallax-hero__layer {
   will-change: transform;
 }
 
-.parallax-hero__layer:nth-child(1) {
+/* Stack order: far2 → far1 → middle2 → middle1 → closest2 (ground) → closest1 (figure) */
+.parallax-hero__layer--far2 {
   z-index: 1;
 }
-.parallax-hero__layer:nth-child(2) {
+.parallax-hero__layer--far1 {
   z-index: 2;
 }
-.parallax-hero__layer:nth-child(3) {
+.parallax-hero__layer--middle2 {
   z-index: 3;
 }
-.parallax-hero__layer:nth-child(4) {
+.parallax-hero__layer--middle1 {
   z-index: 4;
 }
-.parallax-hero__layer:nth-child(5) {
+.parallax-hero__layer--closest2 {
   z-index: 5;
 }
-.parallax-hero__layer:nth-child(6) {
+.parallax-hero__layer--closest1 {
   z-index: 6;
+}
+
+/* Wide screens: sparse layers use cover backgrounds (same as other layers) */
+.parallax-hero__layer--sparse .parallax-hero__art {
+  display: none;
 }
 
 @supports (height: 100dvh) {
@@ -54,15 +68,69 @@
   }
 }
 
-.parallax-hero--simple .parallax-hero__single-layer {
-  position: absolute;
-  left: 50%;
-  top: -14vh;
-  width: 118%;
-  height: 128vh;
-  min-height: 128vh;
-  margin-left: -59%;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: cover;
+/*
+ * ≤420px: same parallax frame + z-order as desktop.
+ * middle1 / closest1 / closest2 are mostly transparent — cover hides them;
+ * show bottom-aligned <img> inside the shared frame instead.
+ */
+@media (max-width: 420px) {
+  .parallax-hero {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+  }
+
+  /* One-screen frame: 128vh pushed foreground art below the viewport */
+  .parallax-hero__fallback,
+  .parallax-hero__layer {
+    left: 50%;
+    top: 0;
+    width: 118%;
+    height: 100%;
+    min-height: 100%;
+    margin-left: -59%;
+    background-position: center bottom;
+    background-size: cover;
+  }
+
+  .parallax-hero__layer--sparse {
+    background-image: none !important;
+  }
+
+  .parallax-hero__layer--sparse .parallax-hero__art {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .parallax-hero__layer--middle1 .parallax-hero__art {
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .parallax-hero__layer--closest2 .parallax-hero__art {
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .parallax-hero__layer--closest1 .parallax-hero__art {
+    object-fit: contain;
+    object-position: right bottom;
+  }
+}
+
+@supports (height: 100dvh) {
+  @media (max-width: 420px) {
+    .parallax-hero {
+      height: 100dvh;
+      min-height: 100dvh;
+      max-height: 100dvh;
+    }
+  }
 }
