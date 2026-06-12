@@ -13,6 +13,8 @@ import {
   faGraduationCap,
   faMicrochip,
   faGamepad,
+  faServer,
+  faVial,
 } from "@fortawesome/free-solid-svg-icons";
 import ScreenHeading from "../../utilitys/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilitys/scrollService";
@@ -34,6 +36,8 @@ const techIcons = {
   python: faPython,
   database: faDatabase,
   code: faCode,
+  server: faServer,
+  test: faVial,
 };
 
 const beyondIcons = {

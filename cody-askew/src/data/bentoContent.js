@@ -27,18 +27,21 @@ export const stackTile = {
   title: "THE STACK",
   learningLabel: "Currently learning",
   learningLines: [
-    "Browser-Use AI — agentic browser automation",
-    "Redux at scale · test coverage in production UIs",
+    "RAG — retrieval-augmented generation",
+    "Vertex AI — Gemini on Google Cloud",
   ],
 };
 
 export const techStack = [
   { label: "React", icon: "react" },
   { label: "Node.js", icon: "node" },
+  { label: "Express", icon: "server" },
   { label: "PostgreSQL", icon: "database" },
   { label: "MongoDB", icon: "database" },
-  { label: "Jest", icon: "js" },
+  { label: "JavaScript", icon: "js" },
   { label: "Python", icon: "python" },
+  { label: "Jest", icon: "code" },
+  { label: "Cypress", icon: "test" },
 ];
 
 /** Middle row: proof — architecture first for scanning */

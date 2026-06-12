@@ -44,7 +44,7 @@
 @media (min-width: 768px) {
   .bento-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: 280px;
+    grid-auto-rows: minmax(280px, auto);
   }
 
   .bento-tile--bio {
@@ -91,11 +91,12 @@
   margin-top: 1.15rem;
 }
 
-.bento-tile--stack-modern {
+.bento-grid .bento-tile--stack-modern {
   background: #1b1b2f !important;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow: visible;
 }
 
 .bento-tile--stack-modern .bento-tile__title {
@@ -103,15 +104,39 @@
 }
 
 .bento-grid .bento-tech--modern {
-  gap: 0.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .bento-grid .bento-tech__cell--modern {
   background: transparent;
   border: 1px solid rgba(142, 154, 175, 0.2);
   color: #fff;
-  min-height: 84px;
+  min-height: 64px;
+  min-width: 0;
+  padding: 0.35rem 0.35rem;
+  font-size: 0.58rem;
   justify-content: center;
+  text-align: center;
+}
+
+.bento-grid .bento-tech__cell--modern span {
+  display: block;
+  max-width: 100%;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+
+.bento-stack__learning--modern {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bento-stack__learning--modern .bento-stack__learning-list {
+  padding: 0 0.25rem 0 0.9rem;
 }
 
 .bento-grid .bento-tech__cell--modern svg {
@@ -182,7 +207,9 @@
   }
 
   .bento-tech__cell--modern {
-    min-height: 72px;
+    min-height: 58px;
+    font-size: 0.54rem;
+    padding: 0.3rem 0.25rem;
   }
 }
 

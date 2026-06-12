@@ -3,20 +3,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faReact,
   faNodeJs,
+  faJs,
+  faPython,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import { faDatabase } from "@fortawesome/free-solid-svg-icons";
+import { faDatabase, faServer, faCode, faVial } from "@fortawesome/free-solid-svg-icons";
 import {
   aboutSection,
   social,
+  stackTile,
+  techStack,
 } from "../../data/bentoContent";
 import "./BentoGrid.css";
 
-const techItems = [
-  { label: "React", icon: faReact },
-  { label: "Node.js", icon: faNodeJs },
-  { label: "PostgreSQL", icon: faDatabase },
-];
+const techIcons = {
+  react: faReact,
+  node: faNodeJs,
+  js: faJs,
+  python: faPython,
+  database: faDatabase,
+  server: faServer,
+  code: faCode,
+  test: faVial,
+};
 
 const beyondItems = ["🐾 Animal Welfare", " ❤️ Family", "🎮 Gaming", "👥  Community"];
 
@@ -54,14 +63,22 @@ export default function BentoGrid() {
         </article>
 
         <article className="bento-tile bento-tile--stack-modern">
-          <h3 className="bento-tile__title">Tech Stack</h3>
+          <h3 className="bento-tile__title">{stackTile.title}</h3>
           <div className="bento-tech bento-tech--modern">
-            {techItems.map((item) => (
+            {techStack.map((item) => (
               <div className="bento-tech__cell bento-tech__cell--modern" key={item.label}>
-                <FontAwesomeIcon icon={item.icon} />
+                <FontAwesomeIcon icon={techIcons[item.icon] || faCode} />
                 <span>{item.label}</span>
               </div>
             ))}
+          </div>
+          <div className="bento-stack__learning bento-stack__learning--modern">
+            <p className="bento-stack__learning-label">{stackTile.learningLabel}</p>
+            <ul className="bento-stack__learning-list">
+              {stackTile.learningLines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
           </div>
         </article>
 
