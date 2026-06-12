@@ -187,7 +187,10 @@ export default function Resume(props) {
               </a>
             </article>
 
-            <article className="bento-tile resume-tile resume-tile--flagship">
+            <article
+              className="bento-tile resume-tile resume-tile--flagship"
+              id="proof"
+            >
               <CaseStudyPanel caseStudy={caseStudy} centered>
                 <button
                   type="button"

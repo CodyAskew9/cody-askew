@@ -30,8 +30,8 @@ const techIcons = {
 const beyondItems = ["🐾 Animal Welfare", " ❤️ Family", "🎮 Gaming", "👥  Community"];
 
 export default function BentoGrid() {
-  const scrollResume = () => {
-    document.getElementById("Resume")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToProof = () => {
+    document.getElementById("proof")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -82,7 +82,7 @@ export default function BentoGrid() {
           </div>
         </article>
 
-        <article className="bento-tile bento-tile--case-modern" id="proof">
+        <article className="bento-tile bento-tile--case-modern">
           <div className="bento-case-modern__content">
             <h3 className="bento-tile__title">Case Study: Enterprise SaaS</h3>
             <p className="bento-tile__body bento-case-modern__body">
@@ -92,7 +92,7 @@ export default function BentoGrid() {
             <button
               type="button"
               className="bento-case-modern__link"
-              onClick={scrollResume}
+              onClick={scrollToProof}
             >
               Explore Architecture
             </button>
