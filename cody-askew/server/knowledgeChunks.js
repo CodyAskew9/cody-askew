@@ -9,7 +9,7 @@ module.exports = [
 
   "Core skills: React.js, Redux, Node.js, Express, PostgreSQL, and MongoDB.",
 
-  "RedshiftHR: A SaaS HR platform built with a Node.js/PostgreSQL architecture.",
+  "Confidential SaaS project: Node.js/PostgreSQL platform with RBAC and SOC 2 Type II compliance controls.",
 
   "CoderHeroes: Cody collaborated with 20–30 developers on an education booking site.",
 

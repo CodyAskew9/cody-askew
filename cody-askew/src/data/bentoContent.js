@@ -13,10 +13,10 @@ export const aboutSection = {
 export const punch = {
   title: "THE PUNCH",
   body:
-    "Albuquerque full stack · SaaS depth from RedshiftHR (relational data, auth, dashboard state). NFC isn’t a footnote—years shipping tags, readers, and physical→digital flows (Albuquerque NFC, 2017–2022).",
+    "Albuquerque full stack · SaaS depth (relational data, auth, RBAC, SOC 2 Type II). NFC isn’t a footnote—years shipping tags, readers, and physical→digital flows (Albuquerque NFC, 2017–2022).",
   chips: [
     "ABQ · NM",
-    "RedshiftHR",
+    "Enterprise SaaS",
     "NFC · hardware",
     "Node · PostgreSQL · React",
   ],
@@ -43,28 +43,28 @@ export const techStack = [
 
 /** Middle row: proof — architecture first for scanning */
 export const caseStudy = {
-  title: "PROOF · REDSHIFTHR",
+  title: "PROOF · ENTERPRISE SAAS",
   subtitle: "SaaS · NDA-safe summary",
   architectureLead: "How the system is wired — frontend to data",
   challenge:
-    "Build a high-availability backend for complex relational HR data, secure authentication, and a responsive dashboard experience.",
-  stack: "Node.js, Express, PostgreSQL, Redux on the client",
+    "Build a high-availability backend for complex relational HR data, secure authentication, and enterprise-grade access controls.",
+  stack: "Node.js, Express, PostgreSQL, React",
   engineering: [
     {
       title: "Relational schema",
       text: "Normalized PostgreSQL design for roles, permissions, and reporting.",
     },
     {
-      title: "State on the client",
-      text: "Redux for predictable dashboard updates and fewer redundant API calls.",
+      title: "RBAC",
+      text: "Role-based access control across the API and application layer—JWT auth and middleware for role-gated routes.",
     },
     {
-      title: "API surface",
-      text: "Express REST + JWT and RBAC middleware for role-gated routes.",
+      title: "SOC 2 Type II",
+      text: "Implemented controls and practices aligned with SOC 2 Type II—audit-ready security, access management, and operational safeguards.",
     },
   ],
   result:
-    "A production-minded foundation: secure APIs, clear data model, and UI state that scales with the product.",
+    "A production-minded foundation: secure APIs, enforced access policies, and compliance-ready operations.",
   flow: [
     { label: "Frontend", icon: "laptop" },
     { label: "Node API", icon: "server" },
@@ -85,7 +85,7 @@ export const beyond = {
   items: [
     {
       title: "Teaching",
-      text: "Altura Prep (K–5) and Cod-IE (8+): Python, Scratch, Pygame, original curricula.",
+      text: "Altura Prep (K–5) and Cod-IE (8+): Python, Scratch, Pygame, original curricula. Passionate about passing on knowledge and helping others learn.",
       icon: "graduation",
     },
     {
@@ -98,6 +98,7 @@ export const beyond = {
       text: "Story-driven worlds and creative builds.",
       icon: "gamepad",
     },
+    {title: "Community", text: "I work with local organizations to help them build their websites and apps.", icon: "community"},
   ],
 };
 

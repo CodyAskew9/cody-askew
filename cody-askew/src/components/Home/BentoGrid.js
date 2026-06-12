@@ -18,7 +18,7 @@ const techItems = [
   { label: "PostgreSQL", icon: faDatabase },
 ];
 
-const beyondItems = ["🐾 Animal Welfare", "Family", "Gaming"];
+const beyondItems = ["🐾 Animal Welfare", " ❤️ Family", "🎮 Gaming", "👥  Community"];
 
 export default function BentoGrid() {
   const scrollResume = () => {
@@ -67,10 +67,10 @@ export default function BentoGrid() {
 
         <article className="bento-tile bento-tile--case-modern" id="proof">
           <div className="bento-case-modern__content">
-            <h3 className="bento-tile__title">Case Study: RedshiftHR</h3>
+            <h3 className="bento-tile__title">Case Study: Enterprise SaaS</h3>
             <p className="bento-tile__body bento-case-modern__body">
-              Architecting a secure, API-first SaaS platform for enterprise
-              human resources.
+              Architecting a secure, API-first SaaS platform with RBAC and SOC 2
+              Type II compliance.
             </p>
             <button
               type="button"
