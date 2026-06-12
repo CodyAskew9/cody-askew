@@ -3,6 +3,12 @@
   "name": "Cody Askew Portfolio",
   "icons": [
     {
+      "src": "favicon-32.png",
+      "type": "image/png",
+      "sizes": "32x32",
+      "purpose": "any"
+    },
+    {
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192",
