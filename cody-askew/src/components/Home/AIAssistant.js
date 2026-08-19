@@ -11,10 +11,13 @@ import {
 import "./AIAssistant.css";
 
 function chatEndpoint() {
-  const base = (process.env.REACT_APP_CHAT_API || "")
+  const raw = (process.env.REACT_APP_CHAT_API || "")
     .trim()
     .replace(/\/$/, "");
-  return base ? `${base}/api/chat` : "/api/chat";
+  if (!raw) return "/api/chat";
+  if (/\/api\/chat$/i.test(raw)) return raw;
+  if (/\/api$/i.test(raw)) return `${raw}/chat`;
+  return `${raw}/api/chat`;
 }
 
 export default function AIAssistant() {

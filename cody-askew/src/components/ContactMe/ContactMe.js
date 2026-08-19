@@ -11,10 +11,17 @@ import SiteFooter from "../Home/Footer/Footer";
 import "./ContactMe.css";
 
 function contactEndpoint() {
-  const base = (process.env.REACT_APP_CHAT_API || "")
+  const raw = (
+    process.env.REACT_APP_CONTACT_API ||
+    process.env.REACT_APP_CHAT_API ||
+    ""
+  )
     .trim()
     .replace(/\/$/, "");
-  return base ? `${base}/api/contact` : "/api/contact";
+  if (!raw) return "/api/contact";
+  if (/\/api\/contact$/i.test(raw)) return raw;
+  if (/\/api$/i.test(raw)) return `${raw}/contact`;
+  return `${raw}/api/contact`;
 }
 
 export default function ContactUs(props) {
@@ -68,8 +75,10 @@ export default function ContactUs(props) {
     } catch (err) {
       setStatus("error");
       const data = err?.response?.data;
+      const statusCode = err?.response?.status;
       const detail =
         data?.error ||
+        (statusCode ? `Request failed with status ${statusCode}.` : "") ||
         err?.message ||
         "Something went wrong. Try again or email me on LinkedIn.";
       setStatusMessage(detail);
