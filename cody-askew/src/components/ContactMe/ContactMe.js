@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import TypeAnimation from "react-type-animation";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 
 import imgBack from "../../../src/images/mailz.jpeg";
 import ScreenHeading from "../../utilitys/ScreenHeading/ScreenHeading";
@@ -10,28 +10,12 @@ import Footer from "../../components/Footer/Footer";
 import SiteFooter from "../Home/Footer/Footer";
 import "./ContactMe.css";
 
-function envTrim(key, fallback) {
-  const v = process.env[key];
-  if (v == null || typeof v !== "string") return fallback;
-  const t = v.trim();
-  return t === "" ? fallback : t;
+function contactEndpoint() {
+  const base = (process.env.REACT_APP_CHAT_API || "")
+    .trim()
+    .replace(/\/$/, "");
+  return base ? `${base}/api/contact` : "/api/contact";
 }
-
-const EMAILJS_SERVICE_ID = envTrim(
-  "REACT_APP_EMAILJS_SERVICE_ID",
-  "service_k1ml1d9"
-);
-const EMAILJS_TEMPLATE_ID = envTrim(
-  "REACT_APP_EMAILJS_TEMPLATE_ID",
-  "template_rn12bfn"
-);
-const EMAILJS_PUBLIC_KEY = envTrim(
-  "REACT_APP_EMAILJS_PUBLIC_KEY",
-  "nbD-qGep0doQ6e3no"
-);
-/** Matches {{to_name}} in your EmailJS template (“Hello {{to_name}},”). */
-const EMAILJS_TO_NAME =
-  process.env.REACT_APP_EMAILJS_TO_NAME || "Cody Askew";
 
 export default function ContactUs(props) {
   useEffect(() => {
@@ -51,7 +35,7 @@ export default function ContactUs(props) {
   const [status, setStatus] = useState("idle");
   const [statusMessage, setStatusMessage] = useState("");
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     if (!form.current) return;
 
@@ -66,50 +50,31 @@ export default function ContactUs(props) {
       return;
     }
 
-    if (!EMAILJS_TEMPLATE_ID.startsWith("template_")) {
-      setStatus("error");
-      setStatusMessage(
-        "EmailJS template ID is wrong: it must look like template_xxxx from https://dashboard.emailjs.com/admin/templates — not your public key."
-      );
-      return;
-    }
-
     setStatus("sending");
     setStatusMessage("Sending…");
-
-    /* Template: Hello {{to_name}}, … from {{user_email}}: {{message}} */
-    const templateParams = {
-      to_name: EMAILJS_TO_NAME,
-      user_email: email,
-      message: `From: ${fromName}\n\n${message}`,
-    };
-
-    emailjs
-      .send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setStatus("success");
-          setStatusMessage("Thanks — your message was sent. I'll get back to you soon.");
-          form.current.reset();
+    try {
+      await axios.post(
+        contactEndpoint(),
+        {
+          fromName,
+          userEmail: email,
+          message,
         },
-        (err) => {
-          setStatus("error");
-          const raw = err?.text || err?.message || "";
-          let detail =
-            raw || "Something went wrong. Try again or email me on LinkedIn.";
-          if (/template.*not found|template id/i.test(String(raw))) {
-            detail +=
-              " Copy the Template ID from https://dashboard.emailjs.com/admin/templates into REACT_APP_EMAILJS_TEMPLATE_ID in .env (starts with template_).";
-          }
-          setStatusMessage(detail);
-          console.error("[ContactMe] EmailJS", err);
-        }
+        { timeout: 15000 }
       );
+      setStatus("success");
+      setStatusMessage("Thanks — your message was sent. I'll get back to you soon.");
+      form.current.reset();
+    } catch (err) {
+      setStatus("error");
+      const data = err?.response?.data;
+      const detail =
+        data?.error ||
+        err?.message ||
+        "Something went wrong. Try again or email me on LinkedIn.";
+      setStatusMessage(detail);
+      console.error("[ContactMe] contact API", err);
+    }
   };
 
   return (

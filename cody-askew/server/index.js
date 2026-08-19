@@ -19,6 +19,7 @@ if (process.platform === "win32") {
 
 const express = require("express");
 const cors = require("cors");
+const { Resend } = require("resend");
 const { chat } = require("./rag");
 
 /* SERVER_PORT: API port. Do not use PORT here — react-scripts uses PORT for :3000. */
@@ -57,12 +58,107 @@ function isLikelyGoogleAuthFailure(err) {
   );
 }
 
+function trimEnv(key, fallback = "") {
+  const value = process.env[key];
+  if (typeof value !== "string") return fallback;
+  const trimmed = value.trim();
+  return trimmed || fallback;
+}
+
+function contactConfigured() {
+  return Boolean(trimEnv("RESEND_API_KEY") && trimEnv("CONTACT_TO_EMAIL"));
+}
+
+function isLikelyResendAuthFailure(err) {
+  const s = `${err && err.name ? err.name : ""} ${err && err.message ? err.message : err}`.toLowerCase();
+  return s.includes("api key") || s.includes("unauthorized") || s.includes("forbidden");
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
     provider: "vertex-ai",
     vertexProjectConfigured: vertexReady(),
+    contactConfigured: contactConfigured(),
   });
+});
+
+app.post("/api/contact", async (req, res) => {
+  const rawBody = req.body || {};
+  const fromName = String(rawBody.fromName || rawBody.from_name || "").trim();
+  const userEmail = String(rawBody.userEmail || rawBody.user_email || "").trim();
+  const message = String(rawBody.message || "").trim();
+
+  if (!fromName || !userEmail || !message) {
+    return res.status(400).json({ error: "Name, email, and message are required." });
+  }
+  if (!isValidEmail(userEmail)) {
+    return res.status(400).json({ error: "Please enter a valid email address." });
+  }
+  if (fromName.length > 120 || userEmail.length > 320 || message.length > 5000) {
+    return res.status(400).json({ error: "Message is too long." });
+  }
+  if (!contactConfigured()) {
+    return res.status(503).json({
+      error:
+        "Contact email is not configured yet. Set RESEND_API_KEY and CONTACT_TO_EMAIL in cody-askew/.env.",
+    });
+  }
+
+  try {
+    const resend = new Resend(trimEnv("RESEND_API_KEY"));
+    const fromAddress = trimEnv(
+      "CONTACT_FROM_EMAIL",
+      "Portfolio Contact <onboarding@resend.dev>"
+    );
+    const toAddress = trimEnv("CONTACT_TO_EMAIL");
+    const subject = `Portfolio contact from ${fromName}`;
+    const htmlMessage = escapeHtml(message).replace(/\r?\n/g, "<br/>");
+
+    const { data, error } = await resend.emails.send({
+      from: fromAddress,
+      to: [toAddress],
+      replyTo: userEmail,
+      subject,
+      text: `Name: ${fromName}\nEmail: ${userEmail}\n\n${message}`,
+      html: `<p><strong>Name:</strong> ${escapeHtml(fromName)}</p><p><strong>Email:</strong> ${escapeHtml(
+        userEmail
+      )}</p><p><strong>Message:</strong></p><p>${htmlMessage}</p>`,
+    });
+
+    if (error) {
+      console.error("[api/contact] resend response error", error);
+      return res.status(502).json({
+        error: "Email provider rejected the message. Please try again in a moment.",
+      });
+    }
+
+    return res.json({ ok: true, id: data?.id || null });
+  } catch (err) {
+    console.error("[api/contact]", err);
+    if (isLikelyResendAuthFailure(err)) {
+      return res.status(503).json({
+        error:
+          "Contact email could not authenticate with Resend. Check RESEND_API_KEY and sender/domain verification.",
+      });
+    }
+    return res.status(500).json({
+      error: "Could not send your message right now. Please try again soon.",
+    });
+  }
 });
 
 app.post("/api/chat", async (req, res) => {
@@ -116,7 +212,9 @@ app.post("/api/chat", async (req, res) => {
 });
 
 const server = app.listen(PORT, () => {
-  console.log(`AI chat server (Vertex AI) http://localhost:${PORT}  (POST /api/chat)`);
+  console.log(
+    `API server (Vertex + Contact) http://localhost:${PORT}  (POST /api/chat, POST /api/contact)`
+  );
 });
 
 server.on("error", (err) => {
