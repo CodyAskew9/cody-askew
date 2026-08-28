@@ -6,10 +6,11 @@ import middle1 from "../../assets/Home/middle1.webp";
 import middle2 from "../../assets/Home/middle2.webp";
 import closest1 from "../../assets/Home/closest1.webp";
 import closest2 from "../../assets/Home/closest2.webp";
+import { assetUrl } from "../../utilitys/assetUrl";
 import "./ParallaxHero.css";
 
 /** Base plate under WebP layers — also shows while layers load */
-const HERO_FALLBACK = `${process.env.PUBLIC_URL || ""}/fallback.png`;
+const HERO_FALLBACK = "/fallback.png";
 
 /** Bottom → top stack (same order as desktop / fallback.png) */
 const LAYERS = [
@@ -28,12 +29,12 @@ function ParallaxLayer({ src, speed, scrollY, staticHero, layerId, sparse }) {
     <motion.div
       className={`parallax-hero__layer parallax-hero__layer--${layerId}${sparse ? " parallax-hero__layer--sparse" : ""}`}
       style={{
-        backgroundImage: `url(${src})`,
+        backgroundImage: `url(${assetUrl(src)})`,
         y: staticHero ? 0 : y,
       }}
     >
       {sparse ? (
-        <img className="parallax-hero__art" src={src} alt="" draggable={false} />
+        <img className="parallax-hero__art" src={assetUrl(src)} alt="" draggable={false} />
       ) : null}
     </motion.div>
   );

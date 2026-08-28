@@ -2,6 +2,7 @@ import React from "react";
 import ScreenHeading from "../../utilitys/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilitys/scrollService";
 import Animations from "../../utilitys/Animations";
+import { RESUME_DOWNLOAD_NAME, RESUME_HREF } from "../../data/site";
 import "./AboutMe.css";
 
 export default function AboutMe(props) {
@@ -58,7 +59,7 @@ export default function AboutMe(props) {
                   {""}
                   Hire me{" "}
                 </button>
-                <a href={`${process.env.PUBLIC_URL}/Cody-Askew-Resume.pdf`} download="Cody-Askew-Resume.pdf">
+                <a href={RESUME_HREF} download={RESUME_DOWNLOAD_NAME}>
                   <button className="btn highlighted-btn">Get Resume</button>
                 </a>
               </div>

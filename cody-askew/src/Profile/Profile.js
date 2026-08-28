@@ -2,6 +2,7 @@ import React from "react";
 import TypeAnimation from 'react-type-animation';
 import "./Profile.css"
 import ScrollService from "../utilitys/scrollService";
+import { RESUME_DOWNLOAD_NAME, RESUME_HREF } from "../data/site";
 
 export default function Profile() {
   return (
@@ -55,7 +56,7 @@ export default function Profile() {
                   {""}
                   Hire me{" "}
               </button>
-              <a href={`${process.env.PUBLIC_URL}/Cody-Askew-Resume.pdf`} download="Cody-Askew-Resume.pdf">
+              <a href={RESUME_HREF} download={RESUME_DOWNLOAD_NAME}>
                   <button className="btn highlighted-btn">Get Resume</button>
               </a>
           </div>

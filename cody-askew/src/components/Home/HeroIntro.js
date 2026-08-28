@@ -2,9 +2,8 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollService from "../../utilitys/scrollService";
 import { hero } from "../../data/bentoContent";
+import { RESUME_DOWNLOAD_NAME, RESUME_HREF } from "../../data/site";
 import "./HeroIntro.css";
-
-const resumeHref = `${process.env.PUBLIC_URL || ""}/Cody-Askew-Resume.pdf`;
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -51,8 +50,8 @@ export default function HeroIntro() {
             </button>
             <a
               className="hero-cta hero-cta--outline"
-              href={resumeHref}
-              download="Cody-Askew-Resume.pdf"
+              href={RESUME_HREF}
+              download={RESUME_DOWNLOAD_NAME}
               aria-label="Download résumé PDF"
             >
               Download résumé
@@ -96,8 +95,8 @@ export default function HeroIntro() {
           </motion.button>
           <motion.a
             className="hero-cta hero-cta--outline"
-            href={resumeHref}
-            download="Cody-Askew-Resume.pdf"
+            href={RESUME_HREF}
+            download={RESUME_DOWNLOAD_NAME}
             aria-label="Download résumé PDF"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}

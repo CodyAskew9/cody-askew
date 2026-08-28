@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { social } from "../../../data/bentoContent";
+import { RESUME_DOWNLOAD_NAME, RESUME_HREF } from "../../../data/site";
 import "./Footer.css";
 
 export default function Footer() {
-  const resumeHref = `${process.env.PUBLIC_URL}/Cody-Askew-Resume.pdf`;
+  const resumeHref = RESUME_HREF;
 
   return (
     <footer className="site-footer" aria-label="Site footer">
@@ -34,7 +35,7 @@ export default function Footer() {
         <a
           className="site-footer__link"
           href={resumeHref}
-          download="Cody-Askew-Resume.pdf"
+          download={RESUME_DOWNLOAD_NAME}
           aria-label="Download résumé PDF"
         >
           <FontAwesomeIcon icon={faFilePdf} />

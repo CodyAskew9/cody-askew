@@ -11,7 +11,7 @@ export default class ScrollService {
 
   //lets have a constructor here and add the scroll event to window
   constructor() {
-    /* ADD SCROLL EVENT TO WINDOW */
+    if (typeof window === "undefined") return;
     window.addEventListener("scroll", this.checkCurrentScreenUnderViewport);
   }
 

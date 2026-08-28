@@ -7,9 +7,9 @@
   },
   "scripts": {
     "start": "npm run start --prefix cody-askew",
-    "server": "npm run server --prefix cody-askew",
     "dev": "npm run dev --prefix cody-askew",
     "build": "npm run build --prefix cody-askew",
-    "test": "npm run test --prefix cody-askew"
+    "lint": "npm run lint --prefix cody-askew",
+    "server": "npm run server --prefix cody-askew"
   }
 }

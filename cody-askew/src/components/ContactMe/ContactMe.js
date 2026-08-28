@@ -2,24 +2,26 @@ import React, { useEffect, useRef, useState } from "react";
 import TypeAnimation from "react-type-animation";
 import axios from "axios";
 
-import imgBack from "../../../src/images/mailz.jpeg";
+import imgBack from "../../images/mailz.jpeg";
 import ScreenHeading from "../../utilitys/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilitys/scrollService";
 import Animations from "../../utilitys/Animations";
 import Footer from "../../components/Footer/Footer";
 import SiteFooter from "../Home/Footer/Footer";
+import { assetUrl } from "../../utilitys/assetUrl";
 import "./ContactMe.css";
 
 function contactEndpoint() {
   const raw = (
-    process.env.REACT_APP_CONTACT_API ||
-    process.env.REACT_APP_CHAT_API ||
+    process.env.NEXT_PUBLIC_CONTACT_API ||
+    process.env.NEXT_PUBLIC_CHAT_API ||
     ""
   )
     .trim()
     .replace(/\/$/, "");
   if (!raw) return "/api/contact";
   if (/\/api\/contact$/i.test(raw)) return raw;
+  if (/\/api\/chat$/i.test(raw)) return raw.replace(/\/chat$/i, "/contact");
   if (/\/api$/i.test(raw)) return `${raw}/contact`;
   return `${raw}/api/contact`;
 }
@@ -107,7 +109,7 @@ export default function ContactUs(props) {
         <div className="back-form">
           <div className="img-back">
             <h4>Send Your Email Here!</h4>
-            <img src={imgBack} alt="" />
+            <img src={assetUrl(imgBack)} alt="" />
           </div>
           <form ref={form} onSubmit={sendEmail} noValidate>
             <label htmlFor="contact-name">Your name</label>

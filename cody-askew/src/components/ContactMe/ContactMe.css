@@ -2,6 +2,9 @@
     min-height: 100vh;
     /* background-image: url("../../assets/ContactMe/contact_us.jpeg"); */
     margin: 100px 0 -450px 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
   .main-container .site-footer {
@@ -11,6 +14,7 @@
   }
   
   .central-form {
+    width: 100%;
     max-width: 1100px;
     padding: 10px;
     display: flex;
@@ -20,6 +24,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: var(--color-body-bg);
+    box-sizing: border-box;
   }
   
   .central-form h2 {
@@ -30,8 +35,11 @@
   }
   
   .back-form {
+    width: 100%;
     max-width: 380px;
     margin: 0 auto;
+    min-width: 0;
+    box-sizing: border-box;
   }
   
   .back-form .img-back {
@@ -53,8 +61,9 @@
   }
   
   .central-form form {
-    width: auto;
-    box-shadow: 0 0 2px 1px white;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     display: flex;
     color: #111;
     padding: 15px;
@@ -65,6 +74,7 @@
     background-color: white;
     box-shadow: 0 0px 20px -2px var(--color-surface-shadow);
     border-radius: 12px;
+    box-sizing: border-box;
   }
   
   .back-form form p {
@@ -84,6 +94,8 @@
   .back-form form input,
   .back-form form textarea {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     border: 2px solid rgba(0, 0, 0, 0);
     outline: none;
     background-color: rgba(230, 230, 230, 0.6);
@@ -92,6 +104,7 @@
     margin-bottom: 22px;
     transition: 0.3s;
     border-radius: 10px;
+    box-sizing: border-box;
   }
   
   .back-form form textarea:focus {
@@ -107,17 +120,18 @@
     margin-top: 15px;
     padding: 5px;
     outline: none;
-    width: 900px;
     color: var(--color-text-primary);
     border: 2px solid var(--color-cta);
-    font-size: 12px;
     border-radius: 19px;
     background-color: var(--color-cta);
     font-size: 18px;
     width: 160px;
+    max-width: 100%;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    box-sizing: border-box;
   }
   
   .back-form form button:hover {
@@ -182,16 +196,20 @@
       display: flex;
       justify-content: space-between;
       margin-top: 30px;
+      min-width: 0;
     }
   
     .img-back {
       flex: 1;
       align-self: center;
       margin-right: 20px;
+      min-width: 0;
     }
   
     .back-form form {
       flex: 0.9;
+      min-width: 0;
+      max-width: 480px;
     }
   }
   @media screen and (max-width: 414px) {

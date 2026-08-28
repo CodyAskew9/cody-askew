@@ -1,13 +1,11 @@
 {
   "name": "cody-askew",
-  "proxy": "http://localhost:5001",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "24.x"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
     "pngjs": "^7.0.0"
   },
   "dependencies": {
@@ -15,49 +13,26 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@fortawesome/react-fontawesome": "^0.1.18",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@google-cloud/vertexai": "^1.10.2",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "framer-motion": "^11.18.2",
+    "next": "^16.3.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.1",
     "react-type-animation": "^1.1.3",
     "resend": "^6.20.0",
-    "rxjs": "^7.5.5",
-    "web-vitals": "^2.1.4"
+    "rxjs": "^7.5.5"
   },
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "server": "node server/index.js",
-    "icons": "node scripts/generate-pwa-icons.cjs",
-    "start": "react-scripts start",
-    "dev": "concurrently -k \"node server/index.js\" \"react-scripts start\"",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "lint": "next lint",
+    "icons": "node scripts/generate-pwa-icons.cjs"
   }
 }
