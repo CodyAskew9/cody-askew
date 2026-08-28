@@ -97,13 +97,18 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    border: 2px solid rgba(0, 0, 0, 0);
+    border: 2px solid transparent;
     outline: none;
-    background-color: rgba(230, 230, 230, 0.6);
-    color: #111;
-    caret-color: #111;
+    appearance: none;
+    -webkit-appearance: none;
+    color-scheme: light;
+    background-color: #e8e8e8;
+    color: #111111;
+    -webkit-text-fill-color: #111111;
+    caret-color: #111111;
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
+    font-family: inherit;
     margin-bottom: 22px;
     transition: 0.3s;
     border-radius: 10px;
@@ -112,8 +117,17 @@
 
   .back-form form input::placeholder,
   .back-form form textarea::placeholder {
-    color: #6b6b80;
+    color: #5c5c70;
+    -webkit-text-fill-color: #5c5c70;
     opacity: 1;
+  }
+
+  .back-form form input:focus,
+  .back-form form textarea:focus {
+    border: 2px solid rgba(232, 154, 190, 0.65);
+    background-color: #e8e8e8;
+    color: #111111;
+    -webkit-text-fill-color: #111111;
   }
 
   .back-form form input:-webkit-autofill,
@@ -122,18 +136,9 @@
   .back-form form textarea:-webkit-autofill,
   .back-form form textarea:-webkit-autofill:hover,
   .back-form form textarea:-webkit-autofill:focus {
-    -webkit-text-fill-color: #111;
-    box-shadow: 0 0 0 1000px #f0f0f0 inset;
+    -webkit-text-fill-color: #111111;
+    box-shadow: 0 0 0 1000px #e8e8e8 inset;
     transition: background-color 9999s ease-out;
-  }
-  
-  .back-form form textarea:focus {
-    border: 2px solid rgba(232, 154, 190, 0.65);
-    background-color: #fff;
-  }
-  .back-form form input:focus {
-    border: 2px solid rgba(232, 154, 190, 0.65);
-    background-color: #fff;
   }
   
   .back-form form button {
