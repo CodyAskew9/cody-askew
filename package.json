@@ -3,7 +3,7 @@
   "private": true,
   "description": "Run scripts from repo root; the React app is in ./cody-askew",
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   },
   "scripts": {
     "start": "npm run start --prefix cody-askew",

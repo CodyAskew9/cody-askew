@@ -66,6 +66,7 @@
     min-width: 0;
     display: flex;
     color: #111;
+    color-scheme: light;
     padding: 15px;
     justify-content: center;
     flex-direction: column;
@@ -99,12 +100,31 @@
     border: 2px solid rgba(0, 0, 0, 0);
     outline: none;
     background-color: rgba(230, 230, 230, 0.6);
+    color: #111;
+    caret-color: #111;
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
     margin-bottom: 22px;
     transition: 0.3s;
     border-radius: 10px;
     box-sizing: border-box;
+  }
+
+  .back-form form input::placeholder,
+  .back-form form textarea::placeholder {
+    color: #6b6b80;
+    opacity: 1;
+  }
+
+  .back-form form input:-webkit-autofill,
+  .back-form form input:-webkit-autofill:hover,
+  .back-form form input:-webkit-autofill:focus,
+  .back-form form textarea:-webkit-autofill,
+  .back-form form textarea:-webkit-autofill:hover,
+  .back-form form textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: #111;
+    box-shadow: 0 0 0 1000px #f0f0f0 inset;
+    transition: background-color 9999s ease-out;
   }
   
   .back-form form textarea:focus {
