@@ -101,11 +101,11 @@
     outline: none;
     appearance: none;
     -webkit-appearance: none;
-    color-scheme: dark;
-    background-color: #2a2a45;
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
-    caret-color: #ffffff;
+    color-scheme: light;
+    background-color: #dcdce3;
+    color: #000000;
+    -webkit-text-fill-color: #000000;
+    caret-color: #000000;
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
     font-family: inherit;
@@ -117,17 +117,17 @@
 
   .back-form form input::placeholder,
   .back-form form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.55);
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.55);
+    color: #555566;
+    -webkit-text-fill-color: #555566;
     opacity: 1;
   }
 
   .back-form form input:focus,
   .back-form form textarea:focus {
     border: 2px solid rgba(232, 154, 190, 0.65);
-    background-color: #323250;
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
+    background-color: #dcdce3;
+    color: #000000;
+    -webkit-text-fill-color: #000000;
   }
 
   .back-form form input:-webkit-autofill,
@@ -136,8 +136,8 @@
   .back-form form textarea:-webkit-autofill,
   .back-form form textarea:-webkit-autofill:hover,
   .back-form form textarea:-webkit-autofill:focus {
-    -webkit-text-fill-color: #ffffff;
-    box-shadow: 0 0 0 1000px #2a2a45 inset;
+    -webkit-text-fill-color: #000000;
+    box-shadow: 0 0 0 1000px #dcdce3 inset;
     transition: background-color 9999s ease-out;
   }
   
